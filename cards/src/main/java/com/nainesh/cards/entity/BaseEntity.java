@@ -1,7 +1,5 @@
 package com.nainesh.cards.entity;
 
-
-import com.nainesh.cards.audit.AuditAwareImpl;
 import jakarta.persistence.Column;
 import jakarta.persistence.EntityListeners;
 import jakarta.persistence.MappedSuperclass;

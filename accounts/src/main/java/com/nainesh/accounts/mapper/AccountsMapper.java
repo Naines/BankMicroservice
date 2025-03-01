@@ -2,7 +2,6 @@ package com.nainesh.accounts.mapper;
 
 import com.nainesh.accounts.dto.AccountsDto;
 import com.nainesh.accounts.entity.Accounts;
-import org.springframework.beans.BeanUtils;
 
 /**
  * Connects dto to entity and vice-versa
@@ -16,7 +15,6 @@ public class AccountsMapper {
         accountsDto.setAccountNumber(accounts.getAccountNumber());
         accountsDto.setAccountType(accounts.getAccountType());
         accountsDto.setBranchAddress(accounts.getBranchAddress());
-//        BeanUtils.copyProperties(accounts, accountsDto);
         return accountsDto;
     }
 
