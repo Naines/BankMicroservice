@@ -24,3 +24,6 @@ Just send one busRequest from any on ms ins, refreshed to all ins connected to t
 - Both refresh link and busRequest are manual.Use spring monitor to automate fully.
 This creates a webhook inside github repo, when change happen in github, invoke monitor api path which implements refresh 
 using busRefresh api path. This dependency(spring-cloud-config-monitor) is only added to config server.
+
+*Use https://console.hookdeck.com/ to open a webhook console.*
+Install scoop from internet and install hookdeck using scope.
