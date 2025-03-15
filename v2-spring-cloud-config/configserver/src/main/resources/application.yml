@@ -2,11 +2,42 @@ spring:
   application:
     name: "configserver"
   profiles:
-    active: native
+#     a “native” profile in the Config Server that does not use Git but loads the config files from the local classpath or file system
+#    active: native
+    active: git
   cloud:
     config:
       server:
-        native:
-          search-locations: "classpath:/config"
+#        native:
+#          search-locations: "classpath:/config" #configs are in config folder
+#          search-locations: "file:///C://Repos//BankMicroservice-Configs"
+        git:
+          uri: "https://github.com/Naines/BankMicroservice-Configs.git"
+          default-label: master
+          timeout: 5
+          clone-on-start: true
+          force-pull: true
+  rabbitmq:
+    host: "localhost"
+    port: 5672
+    username: "guest"
+    password: "guest"
+
+# Expose all management related actuator endpoints
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  health:
+    readiness-state:
+      enabled: true
+    liveness-state:
+      enabled: true
+  endpoint:
+    health:
+      probes:
+        enabled: true
+
 server:
   port: 8071

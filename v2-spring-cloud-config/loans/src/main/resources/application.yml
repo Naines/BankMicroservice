@@ -20,3 +20,15 @@ spring:
     active: "prd"
   config:
     import: "optional:configserver:http://localhost:8071/"
+  rabbitmq:
+    host: "localhost"
+    port: 5672
+    username: "guest"
+    password: "guest"
+
+# Expose all management related actuator endpoints
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
