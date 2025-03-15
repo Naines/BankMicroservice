@@ -1,0 +1,15 @@
+spring:
+  config:
+    activate:
+      on-profile: "tst"
+build:
+  version: "2.0"
+
+loans:
+  message: "Welcome to Bank loans related tst APIs "
+  contactDetails:
+    name: "Nainesh Goel - Tester"
+    email: "tst3@nainesh.com"
+  onCallSupport:
+    - (452) 456-2176
+    - (546) 764-8934
