@@ -89,5 +89,33 @@ Patterns of application gateway:
   the requests to a single response.
 
 ====================================================================================
+Section 10: Resilency
+
+Handle cascading failures?
+Handle failures gracefully with fallbacks?
+Make our services self-healing capable? retries, timeouts, and give time for a failed services to recover.
+
+Resilience lightwt fault tolerant designed for fn programming. Offers following patterns for increasing fault tolerance
+duw to nw problems or failure of any of the multiple services:
+
+Circuit breaker patterns:
+
+* [Circuit breaker](https://resilience4j.readme.io/docs/circuitbreaker): Used to stop making requests when a service
+  invoked is failing.
+* Fallback: Alternative paths to failing requests.
+* Retry: Used to make retries when a service has temporarily failed.
+* Rate Limit: Limits the number of calls that a service receives in a time.
+* Bulkhead: Limits the number of outgoing concurrent requests to a service to avoid overloading.
+
+Circuit breaker pattern: In distributed env, calls to remote services may fail (nw connections, timeouts). These faults
+correct themselves after some time.
+In ckt breaker pattern, if calls are long, ckt breaker will intercede and kill the call. If many call fails,ckt break
+implementation will pop, failing fast and prevent future calls to failing resource.
+
+
+============================================================================================
+Section 10: observability
+
+
 
 
