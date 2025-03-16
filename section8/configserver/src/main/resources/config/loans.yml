@@ -1,0 +1,11 @@
+build:
+  version: "1.0"
+
+loans:
+  message: "Welcome to Bank loans related local APIs "
+  contactDetails:
+    name: "Nainesh Goel - Developer"
+    email: "dev3@nainesh.com"
+  onCallSupport:
+    - (452) 456-2176
+    - (546) 764-8934
