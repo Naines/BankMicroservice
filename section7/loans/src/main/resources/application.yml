@@ -1,0 +1,30 @@
+server:
+  port: 8090
+spring:
+  application:
+    name: loans
+  profiles:
+    active: "prd"
+  datasource:
+    url: jdbc:mysql://localhost:3309/loansdb
+    username: root
+    password: root
+  jpa:
+    show-sql: true
+  sql:
+    init:
+      mode: always
+  config:
+    import: "optional:configserver:http://localhost:8071/"
+#  rabbitmq:
+#    host: "localhost"
+#    port: 5672
+#    username: "guest"
+#    password: "guest"
+
+# Expose all management related actuator endpoints
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
