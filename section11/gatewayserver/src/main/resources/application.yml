@@ -1,0 +1,55 @@
+server:
+  port: 8080
+spring:
+  application:
+    name: "gatewayserver"
+  config:
+    import: "optional:configserver:http://localhost:8071/"
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: false
+          lowerCaseServiceId: true
+      httpclient:
+        connect-timeout: 1000
+        response-timeout: 2s
+  data:
+    redis:
+      connect-timeout: 2s
+      host: localhost
+      port: 6379
+      timeout: 1s
+
+# Expose all management related actuator endpoints
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    gateway:
+      access: unrestricted
+  info:
+    env:
+      enabled: true
+
+info:
+  app:
+    name: "gatewayserver"
+    description: "Bank Gateway Server Application"
+    version: "1.0.0"
+
+logging:
+  level:
+    com:
+      nainesh:
+        gatewayserver: DEBUG
+
+resilience4j.circuitbreaker:
+  configs:
+    default:
+      slidingWindowSize: 10 #no of requests to monitor before changing from closed to open
+      permittedNumberOfCallsInHalfOpenState: 2 #2 requests can be allowed to half open to decide next state change
+      failureRateThreshold: 50 #50% fail, then move to open state
+      waitDurationInOpenState: 10000 #Wait 10s
