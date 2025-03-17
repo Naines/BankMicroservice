@@ -1,6 +1,7 @@
 package com.nainesh.accounts.service.impl;
 
 import com.nainesh.accounts.dto.AccountsDto;
+import com.nainesh.accounts.dto.CardsDto;
 import com.nainesh.accounts.dto.CustomerDetailsDto;
 import com.nainesh.accounts.dto.LoansDto;
 import com.nainesh.accounts.entity.Accounts;
@@ -37,9 +38,14 @@ public class CustomerServiceImpl implements ICustomerService {
         customerDetailsDto.setAccountsDto(AccountsMapper.mapToAccountsDto(accounts, new AccountsDto()));
 
         ResponseEntity<LoansDto> loansDtoResponseEntity = loansFeignClient.fetchLoansDetails(correlationId, mobileNumber);
-        customerDetailsDto.setLoansDto(loansDtoResponseEntity.getBody());
+        if(null!=loansDtoResponseEntity){
+            customerDetailsDto.setLoansDto(loansDtoResponseEntity.getBody());
+        }
 
-        customerDetailsDto.setCardsDto(cardsFeignClient.fetchCardsDetails(correlationId, mobileNumber).getBody());
+        ResponseEntity<CardsDto> cardsDtoResponseEntity = cardsFeignClient.fetchCardsDetails(correlationId, mobileNumber);
+        if(null!=cardsDtoResponseEntity){
+            customerDetailsDto.setCardsDto(cardsDtoResponseEntity.getBody());
+        }
         return customerDetailsDto;
     }
 }

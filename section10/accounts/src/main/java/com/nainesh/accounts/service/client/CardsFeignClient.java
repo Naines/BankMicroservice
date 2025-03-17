@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestParam;
 
 
-@FeignClient("cards")
+@FeignClient(name="cards", fallback = CardsFallback.class)
 public interface CardsFeignClient {
 
     //this method signature should match with cards rest api (fetch cards details)

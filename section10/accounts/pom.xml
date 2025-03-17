@@ -76,6 +76,12 @@
 
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-circuitbreaker-resilience4j</artifactId>
+		</dependency>
+
+
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-openfeign</artifactId>
 		</dependency>
 
@@ -122,7 +128,7 @@
 				<version>3.4.2</version>
 				<configuration>
 					<to>
-						<image>nainesh/${project.artifactId}:s9</image>
+						<image>nainesh/${project.artifactId}:s10</image>
 					</to>
 				</configuration>
 			</plugin>

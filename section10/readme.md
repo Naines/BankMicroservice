@@ -89,5 +89,67 @@ Patterns of application gateway:
   the requests to a single response.
 
 ====================================================================================
+Section 10: Resilency
+
+Handle cascading failures?
+Handle failures gracefully with fallbacks?
+Make our services self-healing capable? retries, timeouts, and give time for a failed services to recover.
+
+Resilience lightwt fault tolerant designed for fn programming. Offers following patterns for increasing fault tolerance
+duw to nw problems or failure of any of the multiple services:
+
+Circuit breaker patterns:
+
+* [Circuit breaker](https://resilience4j.readme.io/docs/circuitbreaker): Used to stop making requests when a service
+  invoked is failing.
+* Fallback: Alternative paths to failing requests.
+* Retry: Used to make retries when a service has temporarily failed.
+* Rate Limit: Limits the number of calls that a service receives in a time.
+* Bulkhead: Limits the number of outgoing concurrent requests to a service to avoid overloading.
+
+Circuit breaker pattern: In distributed env, calls to remote services may fail (nw connections, timeouts). These faults
+correct themselves after some time.
+In ckt breaker pattern, if calls are long, ckt breaker will intercede and kill the call. If many call fails,ckt break
+implementation will pop, failing fast and prevent future calls to failing resource.
+
+Advantages:
+
+* Fail fast
+* Fail gracefully
+* Recover seamlessly
+
+3 states of ckt breaker:
+CLOSED
+OPEN
+HALF_OPEN
+
+ckt breaker can be implemented at ms level or at edge server.
+
+* Retry pattern in case of Http timeouts:
+  Dont wait use fallback url based on business logic.
+
+Considerations for retry logic:
+Define timeouts per route, use metadata() alongwith the route.
+Retry logic: Based on error codes, exceptions ot response status, determine when and how many tries to retry an
+operation.
+Backoff strategy: Increasing delay gradually between each retry (exponential backoff)(Strategy for delaying retries to
+avoid overwhelming the system).
+CKT breaker integration: Combine retry + ckt breaker.
+Idempotent ops: Ensure retried logic is idempotent. No sideeffects.
+
+Rate Limiter: Helps control and limit rate of incoming requests to a service or API, to prevent self abuse and ensure
+fair usage.
+Uncontrolled request in ms communication lead to performance degradation, resource exhaustion, DOS attacks. Rate limiter
+provide mechanism to enforce limits on rate of incoming requests.
+Specific limit is enforced based on a chosen strategy, such as limiting requests per session, IP address, user or
+tenant.
+
+
+Redis: docker run -p 6379:6379 --name rediscontainer -d redis
+
+BulkHead Pattern: Aims to improve resilience and isolation of components or services within a system.
+Allocate/limit resources which can be used for specific service.
+============================================================================================
+Section 10: Observability
 
 
