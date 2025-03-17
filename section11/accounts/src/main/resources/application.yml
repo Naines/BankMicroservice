@@ -61,11 +61,17 @@ info:
     description: "Bank Accounts Application"
     version: "1.0.0"
 
+metrics:
+  tags:
+    application:${spring.application.name}
+
 logging:
   level:
     com:
       nainesh:
         accounts: DEBUG
+  pattern:
+    level: "%5p [${spring.application.name},%X{trace_id},%X{span_id}]"
 
 resilience4j.circuitbreaker:
   configs:

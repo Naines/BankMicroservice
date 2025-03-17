@@ -51,8 +51,9 @@ public class CardsController {
     public ResponseEntity<CardsDto> fetchCardsDetails(@RequestHeader("bank-correlation-id") String correlationId,
                                                       @Valid @RequestParam
                                                       @Pattern(regexp = "(^$|[0-9]{10})", message = "Mobile number must be 10 digits") String mobileNumber) {
-        logger.debug("bank-correlation-id found: {}", correlationId);
+        logger.debug("fetchCards method start");
         CardsDto cardsDto = iCardsService.fetchCard(mobileNumber);
+        logger.debug("fetchCards method end");
         return ResponseEntity.status(HttpStatus.OK).body(cardsDto);
     }
 

@@ -144,7 +144,6 @@ provide mechanism to enforce limits on rate of incoming requests.
 Specific limit is enforced based on a chosen strategy, such as limiting requests per session, IP address, user or
 tenant.
 
-
 Redis: docker run -p 6379:6379 --name rediscontainer -d redis
 
 BulkHead Pattern: Aims to improve resilience and isolation of components or services within a system.
@@ -152,8 +151,10 @@ Allocate/limit resources which can be used for specific service.
 ============================================================================================
 Section 10: Observability and monitoring
 
-Debugging a problem in ms? Trace txs across multiple containers? Combine all logs into a central location where they can be indexed, searched, filtered,and grouped to find bugs.
-Monitoring performance of service calls? Track path of a specific chain service call through our ms nw and time it took at each ms?
+Debugging a problem in ms? Trace txs across multiple containers? Combine all logs into a central location where they can
+be indexed, searched, filtered,and grouped to find bugs.
+Monitoring performance of service calls? Track path of a specific chain service call through our ms nw and time it took
+at each ms?
 Monitoring services health and metrics?Create alerts and notifications for abnormal behaviour of services.
 They solve challenge of identifying and resolving above the problems before they cause outage.
 
@@ -167,7 +168,36 @@ Traces: Record of path that req takes through a system-track performance of req 
 Grafana:tools for observability and monitoring, opensource
 logs: G-loki, metrics: G-prometheus, traces: G-tempo
 
+https://grafana.com/docs/loki/latest/get-started/quick-start/
 
+Logs:
+Promtail (agent running in ms), gets logs and fwds to loki (log aggregation system). Grafana searches them using query.
+Promtail is replaced by alloy in grafana loki v3.0
+Grafana: http://localhost:3000/explore
+
+Metrics:
+Event logs dont provide answers like CPU, memory,threads usage and error requests.
+Metrics are numerical measurements of application performance, collected and aggregated at regular intervals.
+Actuator expose metrics,Micrometer expose /actuator/metrics data into something monitoring system understand.
+Prometheus aggregate metrics, Grafana-visualization tool to create dashboards and charts from prometheus.
+
+Prometheus: http://localhost:9090/targets
+
+Tracing: Logs, metrics fail to account for distributed nature of cloud apps. Given that a user request often travels
+multiple apps.
+To correlate data across app boundaries, **distributed tracing** is used. Gives insights into req processing.
+
+3 concepts for distributed tracing:
+
+* Tags: metadata for span context (req uri, username, etc)
+* traceid: Trace denotes collection of actions tied to request or tx, distinguished by traceid.
+* spanid: Individual stage of request processing.
+  micrometer.io/docs/tracing or opentelemetry.io
+
+Opentelemetry generate traces and spans automatically,
+Tempo provides solution for storage, retrieval and analysis,
+Grafana is used to connect to tempo as datasource and see distributed tracing with help of visuals.(loki and tempo can
+be integrated to jump to tracing details directly from logs inside Loki)
 
 
 
