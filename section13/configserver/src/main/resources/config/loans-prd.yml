@@ -1,0 +1,11 @@
+build:
+  version: "4.0"
+
+loans:
+  message: "Welcome to Bank loans related prd APIs "
+  contactDetails:
+    name: "Nainesh Goel - ProducerOwner"
+    email: "prd3@nainesh.com"
+  onCallSupport:
+    - (452) 456-2176
+    - (546) 764-8934
