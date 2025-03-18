@@ -221,3 +221,5 @@ Convert gw server to oauth 2 server:
 <groupId>org.springframework.security</groupId>
 <artifactId>spring-security-oauth2-jose</artifactId>
 </dependency>
+
+CORS stop communication bw 2 domains and port number until backend allows it.
