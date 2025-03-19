@@ -366,3 +366,18 @@ Sequence Flow
 4. (Optional) Message Service → RabbitMQ Exchange (communication-sent)
 5. Accounts → (updateCommunication-in-0) → Acknowledgment or Update Received
 
+========================================================================================================================
+=============================================================================================================
+Section 14: Apache Kafka
+
+* Design
+* Data retention
+* Performance
+* Scalability
+
+Broker, Topic, Partitions, Consumer Groups, Consumer, Producer
+
+* Replication
+* Streams
+* Consumers
+* Consumer groups
